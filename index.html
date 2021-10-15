@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Silvia Arnáiz García</title>
+    <script>
+        const camposInput = [
+            {
+                'id': 'dni',
+                'definición': 'DNI',
+                'tipoCampo': 'texto'
+            },
+            {
+                'id': 'nombre',
+                'definición': 'Nombre completo',
+                'tipoCampo': 'texto'
+            },
+            {
+                'id': 'direccion',
+                'definición': 'Dirección',
+                'tipoCampo': 'texto'
+            },
+            {
+                'id': 'telefono',
+                'definición': 'Teléfono',
+                'tipoCampo': 'texto'
+            },
+            {
+                'id': 'comoDeMalo',
+                'definición': 'Malo',
+                'value': 'malo',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeMalo',
+                'definición': 'Muy malo',
+                'value': 'muyMalo',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeMalo',
+                'definición': 'Super Malo',
+                'value': 'superMalo',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeMalo',
+                'definición': 'Pérfido',
+                'value': 'perfido',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeBueno',
+                'definición': 'bueno',
+                'value': 'bueno',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeBueno',
+                'definición': 'Muy bueno',
+                'value': 'muyBueno',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeBueno',
+                'definición': 'Super Bueno',
+                'value': 'superMalo',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'comoDeBueno',
+                'definición': 'Un bendito',
+                'value': 'perfido',
+                'tipoCampo': 'radio'
+            },
+            {
+                'id': 'checkbox1',
+                'definición': 'Checkbox 1',
+                'value': 'checkbox1',
+                'tipoCampo': 'checkbox'
+            },
+            {
+                'id': 'checkbox2',
+                'definición': 'Checkbox 2',
+                'value': 'checkbox2',
+                'tipoCampo': 'checkbox'
+            },
+            {
+                'id': 'checkbox3',
+                'definición': 'Checkbox 3',
+                'value': 'checkbox3',
+                'tipoCampo': 'checkbox'
+            },
+            {
+                'id': 'checkbox4',
+                'definición': 'Checkbox 4',
+                'value': 'checkbox4',
+                'tipoCampo': 'checkbox'
+            },
+            {
+                'id': 'checkbox5',
+                'definición': 'Checkbox 5',
+                'value': 'checkbox5',
+                'tipoCampo': 'checkbox'
+            }
+        ];
+
+        const imagenes = [
+            {
+                'id': 'imagen1',
+                'source': './imagenes/DrDoofenshmirtz.png',
+                'alt': 'Pérfido Doofenshmirtz'
+            },
+            {
+                'id': 'imagen2',
+                'source': './imagenes/nodoyuna.png',
+                'alt': 'Pierre Nodoyuna'
+            },
+        ];
+
+        const opcionesSelect = [
+        {
+                'id': 'opcionSelect',
+                'valor': 'opcion1',
+                'texto': 'Opción 1'
+            },
+            {
+                'id': 'opcionSelect',
+                'valor': 'opcion2',
+                'texto': 'Opción 2'
+            },
+            {
+                'id': 'opcionSelect',
+                'valor': 'opcion3',
+                'texto': 'Opción 3'
+            },
+            {
+                'id': 'opcionSelect',
+                'valor': 'opcion4',
+                'texto': 'Opción 4'
+            },
+        ];
+        function cargar() {
+            crearFormulario();
+            crearInputs();
+            añadirImagenes();
+            createSelect();
+        }
+
+        function crearFormulario() {
+            // Selecciono el div principal
+            const div = document.getElementsByTagName('div')[0];
+            const formulario = document.createElement('form');
+            formulario.setAttribute('id', 'formulario');
+            div.appendChild(formulario);
+        }
+
+        function crearInputs() {
+            const formulario = document.getElementById('formulario'); // sacar esto de aquí
+            for (campo of camposInput) {
+                // Creo los elementos input y label
+                let label = document.createElement('label');
+
+                // Defino los atributos de input y label
+                label.setAttribute('for', campo['id']);
+                label.textContent = campo['definición'];
+                formulario.appendChild(label);
+
+                let input = document.createElement('input');
+
+                input.setAttribute('name', campo['id']);
+                input.setAttribute('id', campo['id']);
+                input.setAttribute('type', campo['tipoCampo'])
+
+                formulario.appendChild(input);
+            }
+        }
+
+        function añadirImagenes() {
+            const formulario = document.getElementById('formulario'); // sacar esto de aquí
+            for (imagen of imagenes) {
+                const nuevaImagen = document.createElement('img');
+                nuevaImagen.setAttribute('id', imagen['id']);
+                nuevaImagen.setAttribute('src', imagen['source']);
+                nuevaImagen.setAttribute('alt', imagen['alt']);
+                formulario.appendChild(nuevaImagen);
+            }
+        }
+
+        function createSelect() {
+            const formulario = document.getElementById('formulario'); // sacar esto de aquí
+
+            const label = document.createElement('label');
+            label.setAttribute('for', 'opciones');
+
+            const select = document.createElement('select');
+            select.setAttribute('name', 'opciones');
+            select.setAttribute('id', 'opciones');
+
+            for (opcion of opcionesSelect) {
+                const opcionSelect = document.createElement('option');
+                opcionSelect.setAttribute('value', opcion['valor']);
+                opcionSelect.textContent = opcion['texto'];
+                select.appendChild(opcionSelect);
+            }
+
+            formulario.appendChild(label);
+            formulario.appendChild(select);
+        }
+
+        function crearTextArea() {
+            const formulario = document.getElementById('formulario'); // sacar esto de aquí
+        }
+
+    </script>
+</head>
+
+<body onload="cargar()">
+    <div>
+    </div>
+</body>
+
+</html>
+<!-- Se quiere generar una página web completamente por JavaScript, modificando el árbol DOM.
+    La página web solo tendrá un contenedor (DIV) y sobre dicho contenedor
+    y por medio de JavaScript se añadirán elementos a dicho contenedor.
+    La temática de la web se deja libre al alumno. No es necesario usar CSS.
+
+Se añadirá al menos los siguientes elementos HTML a un formulario
+
+- Campos de texto:
+    - donde poner el DNI,
+    - el nombre y los apellidos,
+    - la dirección y
+    - el teléfono.
+- Dos radio button, con 4 opciones a elegir
+- Cinco checkbox diferentes
+- 2 imágenes
+- Un campo select
+- Un text area -->
